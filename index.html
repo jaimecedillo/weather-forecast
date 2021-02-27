@@ -9,17 +9,16 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Voltaire&display=swap" rel="stylesheet">
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" />
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
 
 <body>
     <header>
-        <h1 class="text-center display-4 bg-info text-dark font-weight-bold">Weather Dashboard</h1>
+        <h1 class="text-center display-4 bg-dark text-light font-weight-bold">Weather Dashboard</h1>
     </header>
     <main class="row">
         <form class="col-4 bg-light">
@@ -42,59 +41,58 @@
                 <p class="temp">Temperature:</p>
                 <p class="humidity">Humidity:</p>
                 <p class="wind">Wind Speed:</p>
-                <p class="UV">UV Index:</p>
+                <p class="UV"> UV Index:<span class=uv-color></span></p>
             </div>
         </div>
 
-
-        <div class="col-md-8 offset-md-4 m-.5 border border-4 border-primary">
+        <div class="col-md-8 offset-md-4  border border-4 border-primary">
             <h2 class="font-weight-bold m-4">5-Day Forecast:</h2>
 
-            <div class="row">
-                <div class="col-2">
+            <div class="row hide mb-4 d-flex" id="five-cards">
+                <div class="col-lg-2">
                     <div class="card bg-primary text-light">
-                        <h5>Date</h5>
-                        <img><i class="fa fa-sun text-white"></i></img>
-                        <p>Temperature:</p>
-                        <p>Humidity:</p>
-                    </div>
-                </div>
-
-                <div class="col-2">
-                    <div class="card bg-primary text-light">
-                        <h5>Date</h5>
-                        <img><i class="fa fa-sun text-white"></i></img>
-                        <p>Temperature:</p>
-                        <p>Humidity:</p>
+                        <h5 class="day-1"></h5>
+                        <img class="img-1"></img>
+                        <p class="temp-1"></p>
+                        <p class="hum-1"></p>
                     </div>
                 </div>
                 <div class="col-2">
                     <div class="card bg-primary text-light">
-                        <h5>Date</h5>
-                        <img><i class="fa fa-sun text-white"></i></img>
-                        <p>Temperature:</p>
-                        <p>Humidity:</p>
+                        <h5 class="day-2"></h5>
+                        <img class="img-2"></img>
+                        <p class="temp-2"></p>
+                        <p class="hum-2"></p>
                     </div>
                 </div>
                 <div class="col-2">
                     <div class="card bg-primary text-light">
-                        <h5>Date</h5>
-                        <img><i class="fa fa-sun text-white"></i></img>
-                        <p>Temperature:</p>
-                        <p>Humidity:</p>
+                        <h5 class="day-3"></h5>
+                        <img class="img-3"></img>
+                        <p class="temp-3"></p>
+                        <p class="hum-3"></p>
                     </div>
                 </div>
                 <div class="col-2">
                     <div class="card bg-primary text-light">
-                        <h5>Date</h5>
-                        <img><i class="fa fa-sun text-white"></i></img>
-                        <p>Temperature:</p>
-                        <p>Humidity:</p>
+                        <h5 class="day-4"></h5>
+                        <img class="img-4"></img>
+                        <p class="temp-4"></p>
+                        <p class="hum-4"></p>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="card bg-primary text-light">
+                        <h5 class="day-5"></h5>
+                        <img class="img-5"></img>
+                        <p class="temp-5"></p>
+                        <p class="hum-5"></p>
                     </div>
                 </div>
             </div>
     </main>
 
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./assets/js/logic.js"></script>
 </body>

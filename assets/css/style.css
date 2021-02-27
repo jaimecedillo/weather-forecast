@@ -1,8 +1,30 @@
-#history {
-    font-size: 24px;
-    padding: ; 
+* {
+    font-family: 'Voltaire', sans-serif;
 }
 
+#history {
+    font-size: 24px;
+}
+
+.city-info {
+    font-size: 24px;
+}
 section p {
     font-size: 20px;
 }
+
+.hide {
+    /* display: none; */
+}
+
+.card {
+    width: 8rem;
+    display: flex;
+    flex-wrap: column;
+    padding: 1px;
+}
+
+.uv-color {
+padding-left: 5px;
+}
+
