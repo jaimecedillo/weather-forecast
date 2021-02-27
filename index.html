@@ -6,16 +6,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>5 Day Weather</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
 
 <body>
+    <jumbotron>
+        <h1 class="text-center display-4 bg-info text-dark font-weight-bold">Weather Dashboard</h1>
+    </jumbotron>
+    <main class="row d-flex flex-wrap">
+        <form class="col-4 bg-light">
+            <h2 class="ml-2">Search for a City:</h2>
+            <div class="input-group input-group-lg">
+                <input class="text ml-2 input-primary form-control input-lg input-group" id="search" type="text"
+                    placeholder="City..." name="search">
+                <button class="btn btn-primary city-search btn-outline-secondary" type="button"><i
+                        class="fa fa-search text-white"></i></button>
+            </div>
+            <div class="ml-2 pd-2 flex-column" id="history">
+
+            </div>
+        </form>
 
 
 
+    </main>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./assets/js/logic.js"></script>
