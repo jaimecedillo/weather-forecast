@@ -14,17 +14,10 @@ section p {
 }
 
 .hide {
-    /* display: none; */
-}
-
-.card {
-    width: 8rem;
-    display: flex;
-    flex-wrap: column;
-    padding: 1px;
+    display: none;
 }
 
 .uv-color {
-padding-left: 5px;
+    padding-left: 5px;
 }
 
