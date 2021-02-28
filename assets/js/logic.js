@@ -7,7 +7,7 @@ function createBtns() {
   $('#city-history').empty();
   cities.forEach(function (item) {
     $('#city-history').append(`
-   <button class="btn mt-2 btn-primary btn-outline-secondary">${item}</button>
+   <button class="btn mt-2 btn-outline-secondary btn-block">${item}</button>
    `)
   })
 }
