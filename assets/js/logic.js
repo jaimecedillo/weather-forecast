@@ -41,30 +41,6 @@ $(document).ready(function () {
     createBtns();
   });
 });
-// 5days
-function getForecast(searchvalue) {
-  fetch(forecastUrl + searchvalue + '&appid=' + mykey + "&units=imperial",)
-    .then(function (response) {
-      return response.json();
-    }).then(function (data) {
-      console.log(data)
-      for (var i = 0; i < data.list.length; i += 8) {
-        var castTemp = data.list[i].main.temp
-        var castHum = data.list[i].main.humidity
-        var todImg = data.list[i].weather[0].icon
-        $(".today-img").attr("src", `https://openweathermap.org/img/wn/${todImg}@2x.png`)
-        $(".img-1").attr("src", `https://openweathermap.org/img/wn/${todImg}@2x.png`)
-        $(`#day${[i]}-icon`).attr("src", `https://openweathermap.org/img/wn/${weatherIcon}@2x.png`)
-        $(`#day${[i]}-temp`).text(`Temperature: ${forecastTemp}° F`)
-        $(`#day${[i]}-humidity`).text(`Humidity: ${castHum}%`)
-        $(".day-1").text(moment().add(1, "day").format("l"))
-        $(".day-2").text(moment().add(2, "days").format("l"))
-        $(".day-3").text(moment().add(3, "days").format("l"))
-        $(".day-4").text(moment().add(4, "days").format("l"))
-        $(".day-5").text(moment().add(5, "days").format("l"))
-      }
-    })
-}
 // today
 function getWeather(searchvalue) {
   fetch(todayUrl + searchvalue + '&appid=' + mykey + "&units=imperial",)
@@ -104,3 +80,28 @@ populateHistory = (city) => {
   localStorage.setItem("cities", JSON.stringify(cities));
 }
 
+
+// 5days
+function getForecast(searchvalue) {
+  fetch(forecastUrl + searchvalue + '&appid=' + mykey + "&units=imperial",)
+    .then(function (response) {
+      return response.json();
+    }).then(function (data) {
+      console.log(data)
+
+      for (var i = 0; i < data.list.length; i += 8) {
+        var castTemp = data.list[i].main.temp
+        var castHum = data.list[i].main.humidity
+        var weatherImg = data.list[i].weather[0].icon
+        $(".today-img").attr("src", `https://openweathermap.org/img/wn/${weatherImg}@2x.png`)
+        $(".day1").text(moment().add(1, "day").format("l"))
+        $(".day2").text(moment().add(2, "days").format("l"))
+        $(".day3").text(moment().add(3, "days").format("l"))
+        $(".day4").text(moment().add(4, "days").format("l"))
+        $(".day5").text(moment().add(5, "days").format("l"))
+        $('#dayimg-' + [i]).attr("src", `https://openweathermap.org/img/wn/${weatherImg}@2x.png`)
+        $('#daytemp-' + [i]).text(`Temperature: ${castTemp}° F`)
+        $('#dayhum-' + [i]).text(`Humidity: ${castHum}%`)
+      }
+    })
+}
