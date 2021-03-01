@@ -4,7 +4,6 @@ const todayUrl = 'https://api.openweathermap.org/data/2.5/weather?q=';
 const iconUrl = "https://api.openweathermap.org/data/2.5/img/w/"
 const cities = [];
 
-
 // //Getting local storage if any
 // if (localStorage.getItem("cities") !== null) {
 //   cities = JSON.parse(localStorage.getItem("cities"));
@@ -50,9 +49,19 @@ function getForecast(searchvalue) {
     }).then(function (data) {
       console.log(data)
       for (var i = 0; i < data.list.length; i += 8) {
-
+        var castTemp = data.list[i].main.temp
+        var castHum = data.list[i].main.humidity
         var todImg = data.list[i].weather[0].icon
         $(".today-img").attr("src", `https://openweathermap.org/img/wn/${todImg}@2x.png`)
+        $(".img-1").attr("src", `https://openweathermap.org/img/wn/${todImg}@2x.png`)
+        $(`#day${[i]}-icon`).attr("src", `https://openweathermap.org/img/wn/${weatherIcon}@2x.png`)
+        $(`#day${[i]}-temp`).text(`Temperature: ${forecastTemp}° F`)
+        $(`#day${[i]}-humidity`).text(`Humidity: ${castHum}%`)
+        $(".day-1").text(moment().add(1, "day").format("l"))
+        $(".day-2").text(moment().add(2, "days").format("l"))
+        $(".day-3").text(moment().add(3, "days").format("l"))
+        $(".day-4").text(moment().add(4, "days").format("l"))
+        $(".day-5").text(moment().add(5, "days").format("l"))
       }
     })
 }
@@ -79,7 +88,14 @@ function getUvi(lat, long) {
       return response.json();
     }).then(function (data) {
       console.log(data)
-      
+      $(".uv-color").text("" + data.value);
+      if (data.value > 7.99) {
+        $(".uv-color").addClass("bg-danger")
+      } else if (data.value < 7.98 && data.value > 6) {
+        $(".uv-color").addClass("bg-warning")
+      } else {
+        $(".uv-color").addClass("bg-success")
+      }
     });
 }
 
