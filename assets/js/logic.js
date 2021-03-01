@@ -2,7 +2,6 @@ const mykey = 'e41cae56b33edbfc24408b3b37caf9e3';
 const forecastUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=';
 const todayUrl = 'https://api.openweathermap.org/data/2.5/weather?q=';
 const iconUrl = "https://api.openweathermap.org/data/2.5/img/w/"
-var iconContainerEl = document.querySelector('.city-info')
 const cities = [];
 
 
@@ -20,7 +19,7 @@ function createBtns() {
   $('#city-history').empty();
   cities.forEach(function (item) {
     $('#city-history').append(`
-    <button class="btn-2 mt-2 btn-outline-secondary btn-block">${item}</button>
+    <button class="mt-2 btn-outline-secondary btn-block">${item}</button>
     `)
     // $(".btn-2").click((getForecast))
     populateHistory();
@@ -64,24 +63,23 @@ function getWeather(searchvalue) {
       return response.json();
     }).then(function (data) {
       console.log(data)
-      getUvi(data.coord.lat, data.coord.lon);
       cities.push(searchvalue)
       $(".city").text(searchvalue + " " + moment().format("l"))
-
       $(".temp").text("Temperature: " + data.main.temp + "° F")
       $(".humidity").text("Humidity: " + data.main.humidity + "%")
       $(".wind").text("Wind Speed: " + data.wind.speed + " mph")
-      // $(".UV").text(getUvi);
+      getUvi(data.coord.lat, data.coord.lon);
 
     })
 }
 
 function getUvi(lat, long) {
-  fetch(`http://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${long}&appid=${mykey}`,)
+  fetch(`https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${long}&appid=${mykey}`,)
     .then(function (response) {
       return response.json();
     }).then(function (data) {
       console.log(data)
+      
     });
 }
 
