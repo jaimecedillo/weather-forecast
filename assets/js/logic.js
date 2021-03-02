@@ -18,9 +18,8 @@ function createBtns() {
   $('#city-history').empty();
   cities.forEach(function (item) {
     $('#city-history').append(`
-    <button class="mt-2 btn-outline-secondary btn-block">${item}</button>
+    <button class="btn-2 mt-2 btn-outline-secondary btn-block">${item}</button>
     `)
-    // $(".btn-2").click((getForecast))
     populateHistory();
   });
 }
@@ -31,7 +30,6 @@ function createBtns() {
 $(document).ready(function () {
   $(".btn").click(function (event) {
     event.preventDefault();
-    // $('.hide').show();
     var cityName = $("#search").val()
     $("#search").val("")
     getWeather(cityName)
@@ -41,8 +39,20 @@ $(document).ready(function () {
     createBtns();
     $("#five-cards").removeClass('hide')
     $("h2").removeClass('hide')
+    $(".btn-2").on("click", function (event) {
+      event.preventDefault()
+      getWeather($(this).text())
+    })
   });
 });
+
+populateHistory = function (searchvalue) {
+  cities.push(searchvalue);
+  localStorage.setItem("cities", JSON.stringify(cities, value));
+}
+
+
+
 // today
 function getWeather(searchvalue) {
   fetch(todayUrl + searchvalue + '&appid=' + mykey + "&units=imperial",)
