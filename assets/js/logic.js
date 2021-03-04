@@ -2,17 +2,18 @@ const mykey = 'e41cae56b33edbfc24408b3b37caf9e3';
 const forecastUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=';
 const todayUrl = 'https://api.openweathermap.org/data/2.5/weather?q=';
 const iconUrl = "https://api.openweathermap.org/data/2.5/img/w/"
-const cities = [];
-const historyCities = cities
+var cities = [];
+var historyCities = cities
+var cityList = JSON.parse(localStorage.getItem("historyCities"));
 
-//Getting local storage if any
-
-JSON.parse(localStorage.getItem("historyCities"));
-historyCities.forEach(function (item) {
-  $('#city-history').append(`
-    <button class="btn-2 mt-2 btn-outline-secondary btn-block">${item}</button>
-    `)
-});
+if (cityList === null) {
+  console.log("Element is undefined");
+} else
+  cityList.forEach(function (item) {
+    $('#city-history').append(`
+  <button class="btn-2 mt-2 btn-outline-secondary btn-block">${item}</button>
+  `)
+  });
 
 
 function createBtns() {
@@ -43,10 +44,13 @@ $(document).ready(function () {
   });
 });
 
-// $(".btn-2").on("click", function (event) {
-//   event.preventDefault()
-//   getWeather($(this).text())
-// })
+$(".btn-2").on("click", function (event) {
+  event.preventDefault();
+  getWeather($(this).text());
+  getForecast($(this).text());
+  $("#five-cards").removeClass('hide')
+  $("h2").removeClass('hide')
+})
 
 
 function saveHistory() {
