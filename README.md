@@ -1,11 +1,12 @@
 # Weather Forecast
-A daily Planner to help you manage and schedule your tasks during the day.
+A weather application to check today's city weather and 5 day cast
 
 ## Weather Forecast Content
-* Displays current Day and Time 
-* Click on time block and write your task.
-* Edit and save task at any desired time.
-* Color coded to help you keep track of tasks due time.
+
+* Search for desired city
+* Displays city current Day date, temperature, humidity and UV index
+* Displays 5 day forecast with date, temperature and humidity
+
 
 
 

@@ -4,8 +4,9 @@ const todayUrl = 'https://api.openweathermap.org/data/2.5/weather?q=';
 const iconUrl = "https://api.openweathermap.org/data/2.5/img/w/"
 var cities = [];
 var historyCities = cities
-var cityList = JSON.parse(localStorage.getItem("historyCities"));
 
+// Pull city list and make buttons from local storage
+var cityList = JSON.parse(localStorage.getItem("historyCities"));
 if (cityList === null) {
   console.log("Element is undefined");
 } else
@@ -15,7 +16,7 @@ if (cityList === null) {
   `)
   });
 
-
+// create city lisy as buttons
 function createBtns() {
   $('#city-history').empty();
   cities.forEach(function (item) {
@@ -27,7 +28,7 @@ function createBtns() {
 
 
 
-
+// click search event listener
 $(document).ready(function () {
   $(".btn").click(function (event) {
     event.preventDefault();
@@ -49,7 +50,7 @@ $(document).ready(function () {
 });
 
 
-
+// click city history buttons event listener
 $(".btn-2").on("click", function (event) {
   event.preventDefault();
   getWeather($(this).text());
@@ -58,7 +59,7 @@ $(".btn-2").on("click", function (event) {
   $("h2").removeClass('hide')
 })
 
-
+// save search to local storage
 function saveHistory() {
   historyCities.push
   localStorage.setItem("historyCities", JSON.stringify(historyCities));
@@ -66,7 +67,7 @@ function saveHistory() {
 }
 
 
-// today
+// Fetch todays weather function
 function getWeather(searchvalue) {
   fetch(todayUrl + searchvalue + '&appid=' + mykey + "&units=imperial",)
     .then(function (response) {
@@ -84,6 +85,7 @@ function getWeather(searchvalue) {
     })
 }
 
+// Fetch UV index function
 function getUvi(lat, long) {
   fetch(`https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${long}&appid=${mykey}`,)
     .then(function (response) {
@@ -102,14 +104,14 @@ function getUvi(lat, long) {
 }
 
 
-// 5days
+// fetch 5days forecast function
 function getForecast(searchvalue) {
   fetch(forecastUrl + searchvalue + '&appid=' + mykey + "&units=imperial",)
     .then(function (response) {
       return response.json();
     }).then(function (data) {
       console.log(data)
-
+      // for  loop to get 5 days info
       for (var i = 1; i < 6; i++) {
         var castTemp = data.list[i].main.temp
         var castHum = data.list[i].main.humidity
