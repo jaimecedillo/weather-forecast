@@ -33,7 +33,11 @@ $(document).ready(function () {
     event.preventDefault();
     var cityName = $("#search").val()
     $("#search").val("")
-    getWeather(cityName)
+    if ((cityName).length === 0) {
+      alert("Please enter City!")
+      return;
+    } else
+      getWeather(cityName)
     console.log(cityName)
     getForecast(cityName);
     cities.push(cityName)
@@ -43,6 +47,8 @@ $(document).ready(function () {
     saveHistory();
   });
 });
+
+
 
 $(".btn-2").on("click", function (event) {
   event.preventDefault();
@@ -72,6 +78,9 @@ function getWeather(searchvalue) {
       $(".humidity").text("Humidity: " + data.main.humidity + "%")
       $(".wind").text("Wind Speed: " + data.wind.speed + " mph")
       getUvi(data.coord.lat, data.coord.lon);
+    }).catch(function () {
+      console.log("error");
+      alert("Please enter a valid City!")
     })
 }
 
