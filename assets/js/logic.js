@@ -3,16 +3,17 @@ const forecastUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=';
 const todayUrl = 'https://api.openweathermap.org/data/2.5/weather?q=';
 const iconUrl = "https://api.openweathermap.org/data/2.5/img/w/"
 const cities = [];
+const historyCities = cities
 
-// //Getting local storage if any
-// if (localStorage.getItem("cities") !== null) {
-//   cities = JSON.parse(localStorage.getItem("cities"));
-//   for (var i = 0; i < cities.length; i++) {
-//     var cityListadd = $("<div>").addClass("city");
-//     cityListadd.text(cities[i]);
-//     $("#city-history").append(cityListadd);
-//   }
-// }
+//Getting local storage if any
+
+JSON.parse(localStorage.getItem("historyCities"));
+historyCities.forEach(function (item) {
+  $('#city-history').append(`
+    <button class="btn-2 mt-2 btn-outline-secondary btn-block">${item}</button>
+    `)
+});
+
 
 function createBtns() {
   $('#city-history').empty();
@@ -20,7 +21,6 @@ function createBtns() {
     $('#city-history').append(`
     <button class="btn-2 mt-2 btn-outline-secondary btn-block">${item}</button>
     `)
-    populateHistory();
   });
 }
 
@@ -39,18 +39,21 @@ $(document).ready(function () {
     createBtns();
     $("#five-cards").removeClass('hide')
     $("h2").removeClass('hide')
-    $(".btn-2").on("click", function (event) {
-      event.preventDefault()
-      getWeather($(this).text())
-    })
+    saveHistory();
   });
 });
 
-populateHistory = function (searchvalue) {
-  cities.push(searchvalue);
-  localStorage.setItem("cities", JSON.stringify(cities, value));
-}
+// $(".btn-2").on("click", function (event) {
+//   event.preventDefault()
+//   getWeather($(this).text())
+// })
 
+
+function saveHistory() {
+  historyCities.push
+  localStorage.setItem("historyCities", JSON.stringify(historyCities));
+  console.log(historyCities);
+}
 
 
 // today
@@ -60,13 +63,11 @@ function getWeather(searchvalue) {
       return response.json();
     }).then(function (data) {
       console.log(data)
-      cities.push(searchvalue)
       $(".city").text(searchvalue + " " + moment().format("l"))
       $(".temp").text("Temperature: " + data.main.temp + "° F")
       $(".humidity").text("Humidity: " + data.main.humidity + "%")
       $(".wind").text("Wind Speed: " + data.wind.speed + " mph")
       getUvi(data.coord.lat, data.coord.lon);
-
     })
 }
 
@@ -85,11 +86,6 @@ function getUvi(lat, long) {
         $(".uv-color").addClass("bg-success")
       }
     });
-}
-
-populateHistory = (city) => {
-  cities.push(city);
-  localStorage.setItem("cities", JSON.stringify(cities));
 }
 
 
